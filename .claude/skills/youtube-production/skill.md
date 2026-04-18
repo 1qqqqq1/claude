@@ -1,7 +1,6 @@
 ---
 name: youtube-production
-
-description: A full production pipeline where an agent team collaborates to generate YouTube video content — strategy, script, thumbnail, and SEO metadata — all at once. Use this skill for requests like 'plan a YouTube video,' 'write a video script,' 'video scriptwriting,' 'YouTube content strategy,' 'video scenario,' 'YouTube Shorts planning,' 'create a YouTube thumbnail,' 'video SEO optimization,' 'YouTube channel content,' and other YouTube video production tasks. Also supports SEO optimization or thumbnail creation when an existing script is provided. Note: actual video editing (Premiere, DaVinci), YouTube Analytics API integration, and channel operations dashboard setup are outside this skill's scope.
+description: "A full production pipeline where an agent team collaborates to generate YouTube video content — strategy, script, thumbnail, and SEO metadata — all at once. Use this skill for requests like 'plan a YouTube video,' 'write a video script,' 'video scriptwriting,' 'YouTube content strategy,' 'video scenario,' 'YouTube Shorts planning,' 'create a YouTube thumbnail,' 'video SEO optimization,' 'YouTube channel content,' and other YouTube video production tasks. Also supports SEO optimization or thumbnail creation when an existing script is provided. Note: actual video editing (Premiere, DaVinci), YouTube Analytics API integration, and channel operations dashboard setup are outside this skill's scope."
 ---
 
 # YouTube Production — Full Video Content Production Pipeline
@@ -41,7 +40,7 @@ An agent team collaborates to produce YouTube video content through the pipeline
 Assemble the team and assign tasks. Task dependencies are as follows:
 
 | Order | Task | Owner | Depends On | Deliverable |
-|-------|------|-------|-----------|-------------|
+|-------|------|-------|------------|-------------|
 | 1 | Content strategy | strategist | None | `_workspace/01_strategist_brief.md` |
 | 2a | Script writing | writer | Task 1 | `_workspace/02_scriptwriter_script.md` |
 | 2b | Thumbnail design & generation | designer | Task 1 | `_workspace/03_thumbnail_concept.md` |
@@ -51,7 +50,6 @@ Assemble the team and assign tasks. Task dependencies are as follows:
 Tasks 2a (script) and 2b (thumbnail) run **in parallel**. Both depend only on Task 1 (strategy), so they can start simultaneously.
 
 **Inter-agent communication flow:**
-
 - strategist complete → deliver core angle & tone to writer, title candidates & emotional triggers to designer, keyword map to seo
 - writer complete → deliver hook core message to designer (thumbnail-hook consistency), deliver script to seo
 - seo complete → deliver title-thumbnail combination feedback to designer
@@ -107,7 +105,7 @@ File naming convention: `{order}_{agent}_{deliverable}.{extension}`
 ## Agent Extension Skills
 
 | Skill | Path | Target Agent | Purpose |
-|-------|------|--------------|---------|
+|-------|------|-------------|---------|
 | hook-writing | `skills/hook-writing/skill.md` | scriptwriter | 15 hook patterns, retention psychology, hook-thumbnail-title triangle alignment |
 | thumbnail-psychology | `skills/thumbnail-psychology/skill.md` | thumbnail-designer | Color psychology, 7 composition patterns, text readability, 3-second test |
 
@@ -116,10 +114,8 @@ Agents reference their respective extension skills during task execution to enha
 ## Test Scenarios
 
 ### Happy Path
-
 **Prompt**: "Plan a 10-minute YouTube video as a beginner's guide to AI prompt engineering"
 **Expected Results**:
-
 - Strategy brief: 3+ competitive analyses, keyword map, 3 title candidates
 - Script: 10-minute length (~1,500 words in English), hook + 3–4 segments + closing
 - Thumbnail: A/B concept options + image generation attempt
@@ -127,19 +123,15 @@ Agents reference their respective extension skills during task execution to enha
 - Review: All consistency matrix items verified
 
 ### Existing File Flow
-
 **Prompt**: "Create SEO optimization and a thumbnail for this script" + script file attached
 **Expected Results**:
-
 - Existing script copied to `_workspace/02_scriptwriter_script.md`
 - SEO Mode + Thumbnail Mode merged: seo + designer + reviewer deployed
 - strategist, writer skipped
 
 ### Error Flow
-
 **Prompt**: "Just write a YouTube script quickly, any topic"
 **Expected Results**:
-
 - Switch to Script Mode (strategist + writer + reviewer)
 - Topic is unclear, so strategist proposes 3 trending topics before proceeding
 - Review report notes "thumbnail/SEO not generated"
